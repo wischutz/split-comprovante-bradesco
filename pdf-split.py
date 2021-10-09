@@ -13,8 +13,7 @@ def getFolderPath():
     folderpath.set(folder_selected)
 
 def openFile():
-    filepath = filedialog.askopenfilename(#initialdir="C:\\Users\\Cakow\\PycharmProjects\\Main",
-                                          title="Selecionar Arquivo de Comprovantes Bradesco",
+    filepath = filedialog.askopenfilename(title="Selecionar Arquivo de Comprovantes Bradesco",
                                           filetypes= (("Arquivos pdf","*.pdf"),))
     
     infile =  open(filepath, 'rb')
@@ -41,9 +40,7 @@ def openFile():
         outfile = open(path, 'wb')
         writer.write(outfile)
     if os.name == 'nt':
-        subprocess.Popen(f'explorer "{folderpath.get()}"')
-
-    messagebox.showinfo(title="Sucesso!", message="Arquivo separado com sucesso!")
+        subprocess.Popen(f'explorer "{os.path.realpath(folderpath.get())}"')
 
 window = Tk()
 window.geometry("650x400")
